@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress Bar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f9f9f9;
+        }
+
+        .progress-container {
+            display: flex;
+            width: 80%;
+            max-width: 1000px;
+            border: 1px solid #0a66c2;
+            border-radius: 25px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-step-wrapper {
+            flex: 1;
+            position: relative;
+        }
+
+        .progress-step {
+            text-align: center;
+            padding: 15px 0;
+            font-size: 14px;
+            font-weight: bold;
+            color: #0a66c2;
+            background-color: white;
+            position: relative;
+        }
+
+        .progress-step.active {
+            background-color: #0a66c2;
+            color: white;
+        }
+
+        .progress-step.completed {
+            background-color: green;
+            color: white;
+        }
+
+        .progress-step-wrapper .arrow {
+            position: absolute;
+            top: -5px;
+            right: -20px;
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent; /* Transparent inside */
+            border-top: 29px solid transparent;
+            border-bottom: 28px solid transparent;
+            z-index: 1;
+        }
+
+        .progress-step-wrapper .arrow.active {
+            border-left-color: #0a66c2;
+        }
+
+        .progress-step-wrapper .arrow.completed {
+            border-left-color: green;
+        }
+
+        .progress-step-wrapper .arrow:not(.active):not(.completed) {
+            border-left: 20px solid white; /* White fill for the shape */
+            border-top: 30px solid white; /* Top border line */
+            border-bottom: 30px solid white; /* Bottom border line */
+        }
+
+        .progress-step-wrapper:last-child .arrow {
+            display: none; /* No arrow for the last step */
+        }
+
+        /* Rounded edges for the first and last steps */
+        .progress-step-wrapper:first-child .progress-step {
+            border-top-left-radius: 25px;
+            border-bottom-left-radius: 25px;
+        }
+
+        .progress-step-wrapper:last-child .progress-step {
+            border-top-right-radius: 25px;
+            border-bottom-right-radius: 25px;
+        }
+
+        .progress-step-wrapper:last-child .progress-step {
+            border-right: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-container">
+        <div class="progress-step-wrapper">
+            <div class="progress-step completed">About You</div>
+            <div class="arrow completed"></div>
+        </div>
+        <div class="progress-step-wrapper">
+            <div class="progress-step completed">Contact Details</div>
+            <div class="arrow completed"></div>
+        </div>
+        <div class="progress-step-wrapper">
+            <div class="progress-step active">Financial Details</div>
+            <div class="arrow active"></div>
+        </div>
+        <div class="progress-step-wrapper">
+            <div class="progress-step">Check Eligibility</div>
+        </div>
+    </div>
+</body>
+</html>
