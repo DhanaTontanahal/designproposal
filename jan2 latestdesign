@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress Bar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f9f9f9;
+        }
+
+        .progress-container {
+            display: flex;
+            width: 90%;
+            max-width: 1000px;
+            border: 1.2px;
+            overflow: hidden;
+            position: relative;
+            clip-path: polygon(0 0, 94% 0, 100% 53%, 94% 100%, 0 100%);
+             
+            
+        }
+
+        .progress-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color:  #0a66c2; /* Border color */
+            z-index: -1;
+            clip-path: polygon(0 0, 94% 0, 100% 53%, 94% 100%, 0 100%);
+        }
+
+
+        .progress-step-wrapper {
+            flex: 1;
+            position: relative;
+        }
+
+        .progress-step {
+            text-align: center;
+            padding: 15px 0;
+            font-size: 14px;
+            font-weight: bold;
+            color: #0a66c2;
+            background-color: white;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .progress-step.completed {
+            background-color: #008000;
+            color: white;
+        }
+
+        .progress-step.completed::after {
+            content: "✔"; /* Add tick icon */
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 16px;
+            background: white;
+            color: #008000;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .progress-step.active {
+            background-color: #0a66c2;
+            color: white;
+        }
+
+        .progress-step-wrapper .arrow {
+            position: absolute;
+            top: -5px;
+            right: -20px;
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent; /* Transparent inside */
+            border-top: 29px solid transparent;
+            border-bottom: 28px solid transparent;
+            z-index: 1;
+        }
+
+        .progress-step-wrapper .arrow.active {
+            border-left-color: #0a66c2;
+        }
+
+        .progress-step-wrapper .arrow.completed {
+            border-left-color: green;
+        }
+
+        .progress-step-wrapper .arrow:not(.active):not(.completed) {
+            border-left: 20px solid white; /* White fill for the shape */
+            border-top: 5.9px solid  #0a66c2;; /* Top border line */
+            border-bottom: 30px solid white; /* Bottom border line */
+        }
+
+        .progress-step-wrapper:last-child .arrow {
+            display: none; /* No arrow for the last step */
+        }
+
+        /* Rounded edges for the first and last steps */
+        .progress-step-wrapper:first-child .progress-step {
+            border-top-left-radius: 25px;
+            border-bottom-left-radius: 25px;
+        }
+
+        .progress-step-wrapper:last-child .progress-step {
+            border-top-right-radius: 25px;
+            border-bottom-right-radius: 25px;
+        }
+
+        .progress-step-wrapper:last-child .progress-step {
+            border-right: none;
+        }
+        
+           
+      
+        
+      
+        
+    </style>
+</head>
+<body>
+    <div class="progress-container">
+        <div class="progress-step-wrapper">
+            <div class="progress-step completed">&nbsp;About You&nbsp;</div>
+            <div class="arrow completed"></div>
+        </div>
+        <div class="progress-step-wrapper">
+            <div class="progress-step active">&nbsp;Contact Details&nbsp;</div>
+            <div class="arrow active"></div>
+        </div>
+        <div class="progress-step-wrapper">
+            <div class="progress-step active">&nbsp;Financial Details&nbsp;</div>
+            <div class="arrow active"></div>
+        </div>
+        <div class="progress-step-wrapper">
+            <div class="progress-step">&nbsp;Check Eligibility&nbsp;</div>
+        </div>
+    </div>
+</body>
+</html>
